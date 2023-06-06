@@ -22,9 +22,9 @@
     <h1>Learning how to use the Vue framework</h1>
 </header>
 
-<section id="section-one">
+<section id="section-one" class="key-option">
 
-    <h2>Interpolation:</h2>
+    <h2>Data - <span>Interpolation & Directives</span>:</h2>
 
     <!-- Interpolation = {{ variables }} from Vue to HTML -->
     <p>{{ vueVariables }} is when we use a Vue variable in our HTML.</p>
@@ -33,21 +33,22 @@
     <p>We can learn more by <a v-bind:href="vueLink">clicking this link here</a>.</p>
 </section>
 
-<section id="section-two">
+<section id="section-two" class="key-option">
 
-    <h2>Methods:</h2>
+    <h2>Methods - <span>Functions</span>:</h2>
 
     <container>
         <h5>The count: {{ count }}</h5>
+        <h5 v-once>Count just once: {{ count }}</h5>
 
-        <!-- We can use v-on:click or @click to listen to the click event -->
+        <!-- We can use v-on:click or the @click directive to listen to the click event -->
         <button v-on:click="add()">{{ increase }}</button>
         <button @click="remove()">{{ decrease }}</button>
     </container>
 </section>
 
 <section id="section-three">
-    <h2>Calling vs. Listening to Methods:</h2>
+    <h2>Calling vs. Listening - <span>Methods</span>:</h2>
 
     <!-- Using addName() would immediately call the function -->
     <!-- We need to use addName to call the method once the event is called v-on:input or @:input -->
@@ -62,17 +63,88 @@
 
 <section id="section-four">
     
-    <h2>Event Modifiers</h2>
+    <h2>Event Modifiers - <span>Directives</span>:</h2>
 
     <!-- alter default method by adding .______ after the event name -->
     <!-- .prevent is an easier method than the preventDefault() method in vanilla JS -->
-    <!-- .right would only listen to right click instead of left click for example -->
-    <form v-on:submit.prevent="submitForm">
-        <input type="input">
-        <button>{{ buttonText }}</button>
+    <!-- .enter allows us to only listen to the enter key -->
+    <form v-on:submit.prevent="submitForm" v-on:keyup.enter="confirmedInput">
+        <input v-model="inputValue" type="input">
+        <button>Sign up</button>
     </form>
 
-    <p>The new signup: {{ newSignup }}</p>
+    <p>The new signup on form submit: {{ newSignup }}</p>
+    <p>The new signup on enter keyup: {{ confirmedName }}</p>
+</section>
+
+<section id="section-five">
+    
+    <h2>Two Way Binding - <span>Directives</span>:</h2>
+
+    <!-- Bind inputs and the outputs using v-bind:value with the "name" variable -->
+    <!-- v-model="" is a shortcut for using v-bind:value="" and v-on:input="" -->
+    <!-- We can also just use a colon (:) instead of v-bind similar to @ for v-on -->
+    <input v-on:input="addName" type="text" v-model="name">
+    <p>Your name: {{ name }}</p>
+    <button @click="clearName()">Clear name</button>
+</section>
+
+<section id="section-six" class="key-option">
+
+    <h2>Computed - <span>computed data</span>:</h2>
+
+    <!-- Use computed for only when the used variable changes  -->
+    <!-- Ue computed for outputs on the DOM (for performance) -->
+    
+    <!-- Use methods to refresh when anything on the page changes -->
+    <!-- We can only bind using methods, as computed variables do not bind -->
+    <input type="text" v-model="name">
+    <p>Who is cool? {{ fullName }}</p>
+</section>
+
+<section id="section-seven" class="key-option">
+
+    <h2>Watcher - <span>listen to data or computed property</span></h2>
+
+    <!-- Add the data or computed vaue as a functon, and it will run when the data changes -->
+    <!-- The first argument is the value of the data or computed value -->
+    <input v-on:input="addName" type="text" v-model="name">
+    <button @click="resetName">Reset input</button>
+    <p>Your name: {{ name }}</p>
+    <p>Full name: {{ fullName }}</p>
+
+
+</section>
+
+<section id="section-eight">
+
+    <h2>Multiple computed values</h2>
+
+
+    <div>
+        <input type="text" v-on:input="addFirstName" v-model="firstName" placeholder="First Name">
+        <input type="text" @input="addLastName" v-model="lastName" placeholder="Last Name">
+    </div>
+
+    <p>Name: {{ firstName }} {{ lastName }}</p>
+
+</section>
+
+<section id="section-nine">
+
+    <h2>When to use Watchers</h2>
+
+    <h4>Count: {{ count }}</h4>
+
+    <div>
+        <button v-on:click="add()">+</button>
+    </div>
+
+</section>
+
+<section id="section-ten">
+
+    <h2></h2>
 
 </section>
     

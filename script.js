@@ -55,15 +55,137 @@ sectionThreeApp.mount('#section-three');
 const sectionFourApp = Vue.createApp({
     data() {
         return {
-            buttonText: 'Sign up',
-            newSignup: '',
+            confirmedName: '',
         }
     },
     methods: {
-        submitForm(event) {
-            this.newSignup = event.target.value;
-            console.log(event.target);
+        confirmedInput(event) {
+            console.log(event.target.value);
+            this.confirmedName = event.target.value;
         }
     }
 });
-sectionFourApp.mount('#section-four')
+sectionFourApp.mount('#section-four');
+
+
+// Section 5
+const sectionFiveApp = Vue.createApp({
+    data() {
+        return {
+            name: '',
+        }
+    },
+    methods: {
+        addName(event) {
+            this.name = event.target.value;
+        },
+        clearName() {
+            this.name = '';
+        }
+    }
+});
+sectionFiveApp.mount('#section-five');
+
+// Section 6
+const sectionSixApp = Vue.createApp({
+    data() {
+        return {
+            name: '',
+        }
+    },
+    computed: {
+        fullName() {
+            if (this.name === '') {
+                return '';
+            } else {
+                return this.name + ' ' + 'is cool.'
+            }
+        }
+    },
+    methods: {
+        function() {
+
+        },
+    }
+});
+sectionSixApp.mount('#section-six');
+
+// Section 7
+const sectionSevenApp = Vue.createApp({
+    data() {
+        return {
+            name: '',
+            fullName: '',
+        }
+    },
+    watch: {
+        name(value) {
+            if (this.name === '') {
+            } else {
+                this.fullName = value + ' ' + 'Heids';
+            }
+        }
+    },
+    computed: {
+        addName() {
+            this.name = this.name;
+        }
+    },
+    methods: {
+        resetName() {
+            this.name = '';
+        }
+    }
+});
+sectionSevenApp.mount('#section-seven');
+
+// Section 8
+const sectionEightApp = Vue.createApp({
+    data() {
+        return {
+            firstName: '',
+            lastName: '',
+        }
+    },
+    computed: {
+        addFirstName() {
+            this.firstName = this.firstName;
+        },
+        addLastName() {
+            this.lastName = this.lastName;
+        }
+    }
+});
+sectionEightApp.mount('#section-eight');
+
+// Section 9
+const sectionNineApp = Vue.createApp({
+    data() {
+        return {
+            count: 0,
+        }
+    },
+    watch: {
+        count(currentCount) {
+            if (currentCount > 3) {
+                this.count = 0;
+            }
+        }
+    },
+    methods: {
+        add() {
+            this.count++;
+        }
+    }
+});
+sectionNineApp.mount('#section-nine');
+
+// Section 10
+const sectionTenApp = Vue.createApp({
+    data() {
+        return {
+            key: 0
+        }
+    },
+});
+sectionTenApp.mount('#section-ten');

@@ -17,12 +17,19 @@ section {
     margin: 1em;
     display: flex;
     flex-direction: column;
-    background-color: #d3fff6;
+    background-color: #B1D8B7;
     border-radius: 50px;
-    box-shadow: 1px 1px 2px 2px black;
+    box-shadow: 1px 1px 2px 2px #2F5233;
+}
 
+.key-option {
+    background-color: #dc8a5d;
 }
 
 h2 {
     text-decoration: underline;
+}
+
+span {
+    font-style: italic;
 }
