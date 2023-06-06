@@ -11,26 +11,70 @@
     <link rel="stylesheet" href="/style.css">
 
     <!-- Vue Framework -->
-    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
 
     <!-- Javascript -->
-    <script src="/script.js"></script>
+    <script src="/script.js" defer></script>
 
 </head>
 <body>
-
 <header>
-    <h1>Learning how to use the Vue Framework</h1>
+    <h1>Learning how to use the Vue framework</h1>
 </header>
 
-<section class="section-one">
+<section id="section-one">
+
+    <h2>Interpolation:</h2>
 
     <!-- Interpolation = {{ variables }} from Vue to HTML -->
-    <p>{{ interpolation }} is when we use a Vue variable in our HTML.</p>
-    <p>We can learn more by <a v-bind:href="vueLink">clicking this link here.</a></p>
+    <p>{{ vueVariables }} is when we use a Vue variable in our HTML.</p>
+
+    <!-- v-bind:href or v-bind:src are ways to add in Vue data to HTML  -->
+    <p>We can learn more by <a v-bind:href="vueLink">clicking this link here</a>.</p>
+</section>
+
+<section id="section-two">
+
+    <h2>Methods:</h2>
+
+    <container>
+        <h5>The count: {{ count }}</h5>
+
+        <!-- We can use v-on:click or @click to listen to the click event -->
+        <button v-on:click="add()">{{ increase }}</button>
+        <button @click="remove()">{{ decrease }}</button>
+    </container>
+</section>
+
+<section id="section-three">
+    <h2>Calling vs. Listening to Methods:</h2>
+
+    <!-- Using addName() would immediately call the function -->
+    <!-- We need to use addName to call the method once the event is called v-on:input or @:input -->
+    <input type="text" v-on:input="addName">
+    <p>The person's name is: {{ name }} </p>
+
+    <!-- When we need to add in two arguments, we can use the $event variable -->
+    <input type="text" @input="addJob($event, ' at Google.')">
+    <p>The person's position is {{ role  }}</p>
 
 </section>
 
+<section id="section-four">
+    
+    <h2>Event Modifiers</h2>
+
+    <!-- alter default method by adding .______ after the event name -->
+    <!-- .prevent is an easier method than the preventDefault() method in vanilla JS -->
+    <!-- .right would only listen to right click instead of left click for example -->
+    <form v-on:submit.prevent="submitForm">
+        <input type="input">
+        <button>{{ buttonText }}</button>
+    </form>
+
+    <p>The new signup: {{ newSignup }}</p>
+
+</section>
     
 </body>
 </html>
