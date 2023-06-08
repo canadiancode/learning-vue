@@ -23,7 +23,6 @@
 </header>
 
 <section id="section-one" class="key-option">
-
     <h2>Data - <span>Interpolation & Directives</span>:</h2>
 
     <!-- Interpolation = {{ variables }} from Vue to HTML -->
@@ -34,7 +33,6 @@
 </section>
 
 <section id="section-two" class="key-option">
-
     <h2>Methods - <span>Functions</span>:</h2>
 
     <container>
@@ -62,7 +60,6 @@
 </section>
 
 <section id="section-four">
-    
     <h2>Event Modifiers - <span>Directives</span>:</h2>
 
     <!-- alter default method by adding .______ after the event name -->
@@ -78,7 +75,6 @@
 </section>
 
 <section id="section-five">
-    
     <h2>Two Way Binding - <span>Directives</span>:</h2>
 
     <!-- Bind inputs and the outputs using v-bind:value with the "name" variable -->
@@ -90,7 +86,6 @@
 </section>
 
 <section id="section-six" class="key-option">
-
     <h2>Computed - <span>computed data</span>:</h2>
 
     <!-- Use computed for only when the used variable changes  -->
@@ -103,7 +98,6 @@
 </section>
 
 <section id="section-seven" class="key-option">
-
     <h2>Watcher - <span>listen to data or computed property</span></h2>
 
     <!-- Add the data or computed vaue as a functon, and it will run when the data changes -->
@@ -117,7 +111,6 @@
 </section>
 
 <section id="section-eight">
-
     <h2>Multiple computed values</h2>
 
 
@@ -131,7 +124,6 @@
 </section>
 
 <section id="section-nine">
-
     <h2>When to use Watchers</h2>
 
     <h4>Count: {{ count }}</h4>
@@ -143,8 +135,70 @@
 </section>
 
 <section id="section-ten">
+    <h2>Dynamic styling with Inline Style</h2>
 
-    <h2></h2>
+    <container class="container">
+
+        <!-- Use colon (:) instead of v-bind to bind style with Vue  -->
+        <!-- We can use ternary expressions (check ? true : false) -->
+        <div 
+            :style="{ borderColor: boxA ? 'red' : 'black' }" 
+            @click="boxSelected('A')" 
+            class="box">
+        </div>
+
+        <div 
+            :style="{ borderColor: boxB ? 'red' : 'black' }" 
+            @click="boxSelected('B')" 
+            class="box">
+        </div>
+
+        <div 
+            :style="{ borderColor: boxC ? 'red' : 'black' }" 
+            @click="boxSelected('C')" 
+            class="box">
+        </div>
+    </container>
+
+</section>
+
+<section id="section-eleven">
+    <h2>Adding CSS classes dynamically</h2>
+
+    <container class="container">
+
+        <!-- Use colon (:) instead of v-bind to bind class with Vue  -->
+
+        <!-- Ternary expressions (less idea) -->
+        <div 
+            :class="boxA ? 'active box' : 'box' "
+            @click="boxSelected('A')" >
+        </div>
+
+        <!-- Second way (less ideal) -->
+        <div 
+            :class="{box: true, active: boxB}"
+            @click="boxSelected('B')" >
+        </div>
+
+        <!-- Keep consistent classes in non-binding class separate (best way) -->
+        <div 
+            class="box"
+            :class="{active: boxC}"
+            @click="boxSelected('C')" >
+        </div>
+    </container>
+</section>
+
+<section id="section-twelve">
+    <h2>Classes and Compute properties</h2>
+
+    <!-- Add a computed variable to set data in Vue instead of HTML -->
+    <div 
+        class="box"
+        :class="boxAClasses"
+        @click="boxSelected('A')" >
+    </div>
 
 </section>
     

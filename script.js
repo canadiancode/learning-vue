@@ -184,8 +184,75 @@ sectionNineApp.mount('#section-nine');
 const sectionTenApp = Vue.createApp({
     data() {
         return {
-            key: 0
+            boxA: false,
+            boxB: false,
+            boxC: false,
         }
     },
+    methods: {
+        boxSelected(box) {
+            if (box === 'A') {
+                this.boxA = true;
+            } else if (box === 'B') {
+                this.boxB = true;
+            } else if (box === 'C') {
+                this.boxC = true;
+            }
+        }
+    }
 });
 sectionTenApp.mount('#section-ten');
+
+// Section 11
+const sectionEleventApp = Vue.createApp({
+    data() {
+        return {
+            boxA: false,
+            boxB: false,
+            boxC: false,
+        }
+    },
+    methods: {
+        boxSelected(box) {
+            if (box === 'A') {
+                this.boxA = !this.boxA;
+            } else if (box === 'B') {
+                this.boxB = !this.boxB;
+            } else if (box === 'C') {
+                this.boxC = !this.boxC;
+            }
+        },
+    }
+});
+sectionEleventApp.mount('#section-eleven');
+
+// Section Twelve
+const sectionTwelveApp = Vue.createApp({
+    data() {
+        return {
+            boxA: false,
+            boxB: false,
+            boxC: false,
+        }
+    },
+    computed: {
+        boxAClasses() {
+            return {
+                active: this.boxA
+            }
+        },
+    },
+    methods: {
+        boxSelected(box) {
+            if (box === 'A') {
+                this.boxA = !this.boxA;
+            } else if (box === 'B') {
+                this.boxB = !this.boxB;
+            } else if (box === 'C') {
+                this.boxC = !this.boxC;
+            }
+        },
+    }
+});
+sectionTwelveApp.mount('#section-twelve');
+
