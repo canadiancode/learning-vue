@@ -60,7 +60,6 @@ const sectionFourApp = Vue.createApp({
     },
     methods: {
         confirmedInput(event) {
-            console.log(event.target.value);
             this.confirmedName = event.target.value;
         }
     }
@@ -226,7 +225,7 @@ const sectionEleventApp = Vue.createApp({
 });
 sectionEleventApp.mount('#section-eleven');
 
-// Section Twelve
+// Section 12
 const sectionTwelveApp = Vue.createApp({
     data() {
         return {
@@ -256,3 +255,71 @@ const sectionTwelveApp = Vue.createApp({
 });
 sectionTwelveApp.mount('#section-twelve');
 
+// Section 13
+const sectionThirteenApp = Vue.createApp({
+    data() {
+        return {
+            enteredGoalValue: '',
+            goals: [],
+        }
+    },
+    methods: {
+        addGoal() {
+            this.goals.push(this.enteredGoalValue);
+        },
+    }
+});
+sectionThirteenApp.mount('#section-thirteen');
+
+// Section 14
+const sectionFourteenApp = Vue.createApp({
+    data() {
+        return {
+            enteredGoalValue: '',
+            goals: [],
+        }
+    },
+    methods: {
+        addGoal() {
+            this.goals.push(this.enteredGoalValue);
+            this.enteredGoalValue = '';
+        }
+    }
+});
+sectionFourteenApp.mount('#section-fourteen');
+
+// Section 15
+const sectionFifteenApp = Vue.createApp({
+    data() {
+        return {
+            enteredGoalValue: '',
+            goals: [],
+        }
+    },
+    methods: {
+        addGoal() {
+            this.goals.push(this.enteredGoalValue);
+            this.enteredGoalValue = '';
+        }
+    }
+});
+sectionFifteenApp.mount('#section-fifteen');
+
+// Section 16
+const sectionSixteenApp = Vue.createApp({
+    data() {
+        return {
+            enteredGoalValue: '',
+            myGoals: {
+                name: 'Kevin',
+                myGoal: 'Kick ass',
+                howLong: 'My whole life'
+            },
+
+        }
+    },
+    methods: {
+
+    }
+});
+sectionSixteenApp.mount('#section-sixteen');

@@ -28,7 +28,7 @@
     <!-- Interpolation = {{ variables }} from Vue to HTML -->
     <p>{{ vueVariables }} is when we use a Vue variable in our HTML.</p>
 
-    <!-- v-bind:href or v-bind:src are ways to add in Vue data to HTML  -->
+    <!-- Directives like v-bind:href or v-bind:src = ways to add in Vue data to HTML  -->
     <p>We can learn more by <a v-bind:href="vueLink">clicking this link here</a>.</p>
 </section>
 
@@ -89,7 +89,7 @@
     <h2>Computed - <span>computed data</span>:</h2>
 
     <!-- Use computed for only when the used variable changes  -->
-    <!-- Ue computed for outputs on the DOM (for performance) -->
+    <!-- Use computed for outputs on the DOM (for performance) -->
     
     <!-- Use methods to refresh when anything on the page changes -->
     <!-- We can only bind using methods, as computed variables do not bind -->
@@ -200,6 +200,63 @@
         @click="boxSelected('A')" >
     </div>
 
+</section>
+
+<section id="section-thirteen">
+    <h2>Rendering Content Conditionally</h2>
+
+    <!-- We can use v-if, v-else-if and v-else to remove element from the DOM -->
+    <h4>Using v-if, v-else-if, and v-else</h4>
+    <input type="text" v-model="enteredGoalValue"><button @click="addGoal">Add Goal</button>
+    <p v-if="goals.length === 0">No goals have been added yet...</p>
+    <ul v-else-if="goals.length > 0">
+        <li>Goal</li>
+    </ul>
+    <p v-else>Negative number of goals.</p>
+
+    <!-- We can use show to set display:none for element (still within DOM) -->
+    <h4>Using v-show</h4>
+    <input type="text" v-model="enteredGoalValue"><button @click="addGoal">Add Goal</button>
+    <p v-show="goals.length === 0">No goals have been added yet...</p>
+    <ul v-show="goals.length > 0">
+        <li>Goal</li>
+    </ul>
+
+
+</section>
+
+<section id="section-fourteen">
+    <h2>Rendering Lists of data</h2>
+
+    <!-- the "goals" needs to be the same as the Vue variable, but the "goal" can be anything -->
+    <input type="text" v-model="enteredGoalValue">
+    <button @click="addGoal">Add Goal</button>
+    <ul>
+        <li v-for="goal in goals">{{ goal }}</li>
+    </ul>
+</section>
+
+<section id="section-fifteen">
+    <h2>Index within Array loops</h2>
+
+    <!-- We can get the index of the element using the (thing, index) tool -->
+    <input type="text" v-model="enteredGoalValue">
+    <button @click="addGoal">Add Goal</button>
+    <ul>
+        <li v-for="(goal, index) in goals">{{ goal }} in the index of {{ index }}</li>
+    </ul>
+
+</section>
+
+<section id="section-sixteen">
+    <h2>Key within Object loops</h2>
+
+    <!-- We can get the index of the element using the (thing, index) tool -->
+    <input type="text" v-model="enteredGoalValue">
+    <button @click="addGoal">Add Goal</button>
+    <ul>
+        <li v-for="(goal, key, index) in myGoals">{{ key }}: {{ goal }} is in the index of {{ index }}</li>
+    </ul>
 </section>
     
 </body>
