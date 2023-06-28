@@ -300,6 +300,14 @@ const sectionFifteenApp = Vue.createApp({
         addGoal() {
             this.goals.push(this.enteredGoalValue);
             this.enteredGoalValue = '';
+            console.log('added goal')
+        },
+        removeGoal(index) {
+            this.goals.splice(index, 1);
+        },
+        removeGoals() {
+            this.goals = [];
+            console.log('removed all goals')
         }
     }
 });
@@ -315,11 +323,9 @@ const sectionSixteenApp = Vue.createApp({
                 myGoal: 'Kick ass',
                 howLong: 'My whole life'
             },
-
         }
     },
     methods: {
-
     }
 });
 sectionSixteenApp.mount('#section-sixteen');

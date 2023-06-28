@@ -1,263 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Learning Vue</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/style.css">
-
-    <!-- Vue Framework -->
-    <script src="https://unpkg.com/vue@next"></script>
-
-    <!-- Javascript -->
-    <script src="/script.js" defer></script>
-
-</head>
-<body>
-<header>
-    <h1>Learning how to use the Vue framework</h1>
-</header>
-
-<section id="section-one" class="key-option">
-    <h2>Data - <span>Interpolation & Directives</span>:</h2>
-
-    <!-- Interpolation = {{ variables }} from Vue to HTML -->
-    <p>{{ vueVariables }} is when we use a Vue variable in our HTML.</p>
-
-    <!-- Directives like v-bind:href or v-bind:src = ways to add in Vue data to HTML  -->
-    <p>We can learn more by <a v-bind:href="vueLink">clicking this link here</a>.</p>
-</section>
-
-<section id="section-two" class="key-option">
-    <h2>Methods - <span>Functions</span>:</h2>
-
-    <container>
-        <h5>The count: {{ count }}</h5>
-        <h5 v-once>Count just once: {{ count }}</h5>
-
-        <!-- We can use v-on:click or the @click directive to listen to the click event -->
-        <button v-on:click="add()">{{ increase }}</button>
-        <button @click="remove()">{{ decrease }}</button>
-    </container>
-</section>
-
-<section id="section-three">
-    <h2>Calling vs. Listening - <span>Methods</span>:</h2>
-
-    <!-- Using addName() would immediately call the function -->
-    <!-- We need to use addName to call the method once the event is called v-on:input or @:input -->
-    <input type="text" v-on:input="addName">
-    <p>The person's name is: {{ name }} </p>
-
-    <!-- When we need to add in two arguments, we can use the $event variable -->
-    <input type="text" @input="addJob($event, ' at Google.')">
-    <p>The person's position is {{ role  }}</p>
-
-</section>
-
-<section id="section-four">
-    <h2>Event Modifiers - <span>Directives</span>:</h2>
-
-    <!-- alter default method by adding .______ after the event name -->
-    <!-- .prevent is an easier method than the preventDefault() method in vanilla JS -->
-    <!-- .enter allows us to only listen to the enter key -->
-    <form v-on:submit.prevent="submitForm" v-on:keyup.enter="confirmedInput">
-        <input v-model="inputValue" type="input">
-        <button>Sign up</button>
-    </form>
-
-    <p>The new signup on form submit: {{ newSignup }}</p>
-    <p>The new signup on enter keyup: {{ confirmedName }}</p>
-</section>
-
-<section id="section-five">
-    <h2>Two Way Binding - <span>Directives</span>:</h2>
-
-    <!-- Bind inputs and the outputs using v-bind:value with the "name" variable -->
-    <!-- v-model="" is a shortcut for using v-bind:value="" and v-on:input="" -->
-    <!-- We can also just use a colon (:) instead of v-bind similar to @ for v-on -->
-    <input v-on:input="addName" type="text" v-model="name">
-    <p>Your name: {{ name }}</p>
-    <button @click="clearName()">Clear name</button>
-</section>
-
-<section id="section-six" class="key-option">
-    <h2>Computed - <span>computed data</span>:</h2>
-
-    <!-- Use computed for only when the used variable changes  -->
-    <!-- Use computed for outputs on the DOM (for performance) -->
-    
-    <!-- Use methods to refresh when anything on the page changes -->
-    <!-- We can only bind using methods, as computed variables do not bind -->
-    <input type="text" v-model="name">
-    <p>Who is cool? {{ fullName }}</p>
-</section>
-
-<section id="section-seven" class="key-option">
-    <h2>Watcher - <span>listen to data or computed property</span></h2>
-
-    <!-- Add the data or computed vaue as a functon, and it will run when the data changes -->
-    <!-- The first argument is the value of the data or computed value -->
-    <input v-on:input="addName" type="text" v-model="name">
-    <button @click="resetName">Reset input</button>
-    <p>Your name: {{ name }}</p>
-    <p>Full name: {{ fullName }}</p>
-
-
-</section>
-
-<section id="section-eight">
-    <h2>Multiple computed values</h2>
-
-
-    <div>
-        <input type="text" v-on:input="addFirstName" v-model="firstName" placeholder="First Name">
-        <input type="text" @input="addLastName" v-model="lastName" placeholder="Last Name">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div :style="monsterBarStyles" class="healthbar__value"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div 
+          :style="playerBarStyles" 
+          class="healthbar__value"></div>
+        </div>
+      </section>
+      <section class="container" v-if="winner">
+        <h2>Game over!</h2>
+        <h3 v-if="winner === 'monster' ">You lost!</h3>
+        <h3 v-if="winner === 'player' ">You won!</h3>
+        <h3 v-if="winner === 'draw' ">It's a draw!</h3>
+        <button @click="restartGame">Play again</button>
+      </section>
+      <section id="controls">
+        <button @click="attackMonster">ATTACK</button>
+        <button :disabled="mayUseSpecialAtack" @click="specialAttackMonster">SPECIAL ATTACK</button>
+        <button @click="healPlayer">HEAL</button>
+        <button @click="surrender">SURRENDER</button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <ul></ul>
+      </section>
     </div>
-
-    <p>Name: {{ firstName }} {{ lastName }}</p>
-
-</section>
-
-<section id="section-nine">
-    <h2>When to use Watchers</h2>
-
-    <h4>Count: {{ count }}</h4>
-
-    <div>
-        <button v-on:click="add()">+</button>
-    </div>
-
-</section>
-
-<section id="section-ten">
-    <h2>Dynamic styling with Inline Style</h2>
-
-    <container class="container">
-
-        <!-- Use colon (:) instead of v-bind to bind style with Vue  -->
-        <!-- We can use ternary expressions (check ? true : false) -->
-        <div 
-            :style="{ borderColor: boxA ? 'red' : 'black' }" 
-            @click="boxSelected('A')" 
-            class="box">
-        </div>
-
-        <div 
-            :style="{ borderColor: boxB ? 'red' : 'black' }" 
-            @click="boxSelected('B')" 
-            class="box">
-        </div>
-
-        <div 
-            :style="{ borderColor: boxC ? 'red' : 'black' }" 
-            @click="boxSelected('C')" 
-            class="box">
-        </div>
-    </container>
-
-</section>
-
-<section id="section-eleven">
-    <h2>Adding CSS classes dynamically</h2>
-
-    <container class="container">
-
-        <!-- Use colon (:) instead of v-bind to bind class with Vue  -->
-
-        <!-- Ternary expressions (less idea) -->
-        <div 
-            :class="boxA ? 'active box' : 'box' "
-            @click="boxSelected('A')" >
-        </div>
-
-        <!-- Second way (less ideal) -->
-        <div 
-            :class="{box: true, active: boxB}"
-            @click="boxSelected('B')" >
-        </div>
-
-        <!-- Keep consistent classes in non-binding class separate (best way) -->
-        <div 
-            class="box"
-            :class="{active: boxC}"
-            @click="boxSelected('C')" >
-        </div>
-    </container>
-</section>
-
-<section id="section-twelve">
-    <h2>Classes and Compute properties</h2>
-
-    <!-- Add a computed variable to set data in Vue instead of HTML -->
-    <div 
-        class="box"
-        :class="boxAClasses"
-        @click="boxSelected('A')" >
-    </div>
-
-</section>
-
-<section id="section-thirteen">
-    <h2>Rendering Content Conditionally</h2>
-
-    <!-- We can use v-if, v-else-if and v-else to remove element from the DOM -->
-    <h4>Using v-if, v-else-if, and v-else</h4>
-    <input type="text" v-model="enteredGoalValue"><button @click="addGoal">Add Goal</button>
-    <p v-if="goals.length === 0">No goals have been added yet...</p>
-    <ul v-else-if="goals.length > 0">
-        <li>Goal</li>
-    </ul>
-    <p v-else>Negative number of goals.</p>
-
-    <!-- We can use show to set display:none for element (still within DOM) -->
-    <h4>Using v-show</h4>
-    <input type="text" v-model="enteredGoalValue"><button @click="addGoal">Add Goal</button>
-    <p v-show="goals.length === 0">No goals have been added yet...</p>
-    <ul v-show="goals.length > 0">
-        <li>Goal</li>
-    </ul>
-
-
-</section>
-
-<section id="section-fourteen">
-    <h2>Rendering Lists of data</h2>
-
-    <!-- the "goals" needs to be the same as the Vue variable, but the "goal" can be anything -->
-    <input type="text" v-model="enteredGoalValue">
-    <button @click="addGoal">Add Goal</button>
-    <ul>
-        <li v-for="goal in goals">{{ goal }}</li>
-    </ul>
-</section>
-
-<section id="section-fifteen">
-    <h2>Index within Array loops</h2>
-
-    <!-- We can get the index of the element using the (thing, index) tool -->
-    <input type="text" v-model="enteredGoalValue">
-    <button @click="addGoal">Add Goal</button>
-    <ul>
-        <li v-for="(goal, index) in goals">{{ goal }} in the index of {{ index }}</li>
-    </ul>
-
-</section>
-
-<section id="section-sixteen">
-    <h2>Key within Object loops</h2>
-
-    <!-- We can get the index of the element using the (thing, index) tool -->
-    <input type="text" v-model="enteredGoalValue">
-    <button @click="addGoal">Add Goal</button>
-    <ul>
-        <li v-for="(goal, key, index) in myGoals">{{ key }}: {{ goal }} is in the index of {{ index }}</li>
-    </ul>
-</section>
-    
-</body>
+  </body>
 </html>
