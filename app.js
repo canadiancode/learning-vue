@@ -83,7 +83,11 @@ const vueApp = Vue.createApp({
             this.playerHealth = 100;
             this.currentRound = 0;
             this.winner = null;
+        },
+        addLogMessage(who, what, value) {
+            
         }
+        
     }
 });
 vueApp.mount('#game');
