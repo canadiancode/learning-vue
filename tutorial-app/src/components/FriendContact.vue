@@ -1,24 +1,24 @@
 <template>
     <li>
-        <h2>{{ name }} {{ friendIsFavorite === true ? '(Favorite)' : '' }}</h2>
+        <h2>{{ name }} {{ isFavorite === true ? '(Favorite)' : '' }}</h2>
         <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }}</button>
         <button @click="toggleFavorite">Toggle Favorite</button>
         <ul v-if="detailsAreVisible">
             <li>Phone: {{ phoneNumber }}</li>
             <li>Email: {{ emailAddress }}</li>
         </ul>
+        <button @click="$emit('delete', id)">Delete</button>
     </li>
 </template>
 
 <script>
     export default {
-        // props: [
-        //     'name',
-        //     'phoneNumber',
-        //     'emailAddress',
-        //     'isFavorite',
-        // ],
+        emits: ['toggle-favorite', 'delete'], // adding to show what emits we have  
         props: {
+            id: {
+                type: String,
+                required: true,
+            },
             name: {
                 type: String,
                 required: true,
@@ -40,7 +40,6 @@
         data() {
             return {
                 detailsAreVisible: false,
-                friendIsFavorite: this.isFavorite,
             };
         },
         methods: {
@@ -48,8 +47,8 @@
                 this.detailsAreVisible = !this.detailsAreVisible;
             },
             toggleFavorite() {
-                this.$emit('toggle-favorite');
-            }
+                this.$emit('toggle-favorite', this.id);
+            },
         }
     }
 </script>
