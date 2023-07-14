@@ -1,35 +1,26 @@
 <template>
-
     <header>
         <h1>{{ title }}</h1>
     </header>
-
 </template>
 
 <script>
-
-export default {
-    props: ['title'],
-    data() {
-        return {
-
-        }
+    export default {
+        props: ['title'],
     }
-}
-
 </script>
 
 <style scoped>
     header {
         width: 100%;
+        height: 5rem;
+        background-color: #640032;
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
+    }
+    header h1 {
         color: white;
-        background-color: darkslategrey;
         margin: 0;
-        height: 80px;
     }
 </style>
-

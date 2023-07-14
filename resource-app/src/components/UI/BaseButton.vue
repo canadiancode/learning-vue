@@ -1,35 +1,36 @@
 <template>
-    <button :class="buttonClass">
+    <button :type="type" :class="mode">
         <slot></slot>
     </button>
 </template>
 
 <script>
     export default {
-        props: ['buttonClass'],
+        props: ['type', 'mode'],
     }
 </script>
 
 <style scoped>
     button {
-        height: 30px;
-        padding: 0em 1rem;
-        cursor: pointer;
-        background-color: rgb(47, 79, 79, 0.2);
-        color: black;
-        border: none;
-        border-radius: 12px;
-    }
-    button:hover {
-        background-color: rgb(47, 79, 79, 0.8);
+        padding: 0.75rem 1.5rem;
+        font-family: inherit;
+        background-color: #3a0061;
+        border: 1px solid #3a0061;
         color: white;
+        cursor: pointer;
+    }
+    button:hover,
+    button:active {
+        background-color: #270041;
+        border-color: #270041;
     }
     .flat {
         background-color: transparent;
-        color: black;
+        color: #3a0061;
+        border: none;
     }
     .flat:hover,
     .flat:active {
-        background-color: rgb(47, 79, 79);
+        background-color: #edd2ff;
     }
 </style>
